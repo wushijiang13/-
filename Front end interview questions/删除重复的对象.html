@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="show">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+<style>
+    .show {
+        width: 980px;
+    }
+</style>
+<script>
+    /*
+     * 初始化方法
+     * */
+    var data;
+    function init() {
+        data = [
+            {
+                name: "吴世江",
+                id: 1,
+                age: "男"
+            },
+            {
+                name: "吴广成",
+                id: 2,
+                age: "男"
+            }, {
+                name: "吴世江",
+                id: 1,
+                age: "男"
+            },
+            {
+                name: "林淑兰",
+                id: 3,
+                age: "女"
+            },
+            {
+                name: "啦啦",
+                id: 4,
+                age: "女"
+            },
+            {
+                name: "林淑兰",
+                id: 3,
+                age: "女"
+            },
+        ]
+    }
+    /*
+    * 删除方法
+    * data穿过来的数据
+    * */
+    function deleteRepeat(data) {
+        let repeats=[];
+        for (let i = 0; i < data.length; i++) {//第一个和剩下的比
+            for (let j = i+1; j < data.length; j++) {
+                if(data[i].name.includes(data[j].name)){
+                    data.splice(i,1);
+                }
+            }
+        }
+        repeats=data;
+        return repeats;
+    }
+    init();
+    console.log(deleteRepeat(data));
+</script>
+</html>

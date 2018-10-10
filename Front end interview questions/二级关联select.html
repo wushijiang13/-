@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <select class="yijiselect">
+
+    </select>
+    <select class="erjiselect">
+
+    </select>
+</body>
+<style>
+    .erjiselect{
+        display: none;
+    }
+</style>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script type="text/javascript">
+    var menu;//数据源
+    let yijiselect;//第一个select
+    let diergeselect;//第二个select
+    function init() {
+        yijiselect=$(".yijiselect");
+        diergeselect=$(".erjiselect");
+        menu = [
+
+            {"type_id":1,"name":"大菜","food":[
+
+                {"food_id":1,"name":"鱼香肉丝","price":"10"},
+
+                {"food_id":2,"name":"红烧肉","price":"11"},
+
+                {"food_id":3,"name":"香辣粉","price":"12"}
+
+            ]},
+
+            {"type_id":2,"name":"中菜","food":[
+
+                {"food_id":4,"name":"小炒肉","price":"13"},
+
+                {"food_id":5,"name":"云吞","price":"14"}
+
+            ]},
+
+            {"type_id":3,"name":"小菜","food":[
+
+                {"food_id":6,"name":"雪糕","price":"15"},
+
+                {"food_id":7,"name":"黄瓜","price":"16"}
+
+            ]}
+
+        ];
+    }
+    function update() {
+        yijiselect.append("<option value='0'>请选择</option>");
+        for (let i = 0; i < menu.length; i++) {
+            yijiselect.append("<option value="+menu[i].type_id+">"+menu[i].name+"</option>");
+        }
+        $(".yijiselect").on("change",function () {
+            $(".erjiselect").css("display","block");
+            let value=$(".yijiselect option:selected").val();
+            value=value-1;
+            if(value==-1 && value=="-1"){
+                diergeselect.empty();
+                return;
+            }
+            diergeselect.empty();
+            for (let j = 0; j < menu[value].food.length; j++) {
+                diergeselect.append("<option value="+menu[value].food[j].food_id+">"+menu[value].food[j].name+"</option>");
+            }
+        })
+    }
+    init();
+    update();
+</script>
+</html>
